@@ -15,7 +15,6 @@ public class LoginController {
 
     @PostMapping()
     public Result login(@RequestBody LoginParam loginParam){
-        //123456
         return loginService.login(loginParam);
     }
 
