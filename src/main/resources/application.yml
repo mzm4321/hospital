@@ -11,6 +11,9 @@ spring:
     multipart:
       max-file-size:
         100MB
+  redis:
+    host: 192.168.126.133
+    port: 6379
 
 mybatis-plus:
   configuration:

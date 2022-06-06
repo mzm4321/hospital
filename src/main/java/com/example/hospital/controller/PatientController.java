@@ -57,7 +57,7 @@ public class PatientController {
     }
 
     @DeleteMapping("{patientId}")
-    public Result deleteDoctorbyId(@PathVariable Long patientId){
+    public Result deletePatientbyId(@PathVariable Long patientId){
         return patientService.deletePatientbyId(patientId);
     }
 }

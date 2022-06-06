@@ -30,8 +30,14 @@ public class DoctorController {
         System.out.println(departId);
         return doctorService.findDoctorsbyDeparId(departId);
     }
+    @GetMapping("/nostop/depart/{departId}")
+    public Result findNoStopDoctorsbyDeparId(@PathVariable Long departId) {
+        System.out.println(departId);
+        return doctorService.findNoStopDoctorsbyDeparId(departId);
+    }
 
-    @GetMapping("/{dotocrId}")
+
+    @GetMapping("{dotocrId}")
     public Result findDoctor(@PathVariable Long dotocrId) {
         return doctorService.findDoctor(dotocrId);
     }
@@ -50,6 +56,7 @@ public class DoctorController {
     public Result updateDoctorbyId(@PathVariable Long doctorId,@RequestBody DoctorParam doctorParam) {
         System.out.println(doctorParam);
         System.out.println("--------------"+doctorParam.getStop());
+        System.out.println(doctorParam.getHospitalTime());
         return doctorService.updateDoctorbyId(doctorId,doctorParam);
     }
 

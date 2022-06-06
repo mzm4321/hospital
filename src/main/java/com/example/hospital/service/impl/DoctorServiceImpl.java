@@ -139,6 +139,15 @@ public class DoctorServiceImpl extends ServiceImpl<DoctorMapper, Doctor> impleme
         return Result.success(null);
     }
 
+    @Override
+    public Result findNoStopDoctorsbyDeparId(Long departId) {
+        LambdaQueryWrapper<Doctor>queryWrapper=new LambdaQueryWrapper<>();
+        queryWrapper.eq(Doctor::getDepartId,departId);
+        queryWrapper.eq(Doctor::getStop,0);
+        queryWrapper.orderByDesc(Doctor::getDoctorAge);
+        return Result.success(copyList(doctorMapper.selectList(queryWrapper)));
+    }
+
     public DoctorSimpleVo copySimple(Doctor doctor){
         DoctorSimpleVo doctorSimpleVo = new DoctorSimpleVo();
         doctorSimpleVo.setDepartName(departmentService.getById(doctor.getDepartId()).getDepartName());

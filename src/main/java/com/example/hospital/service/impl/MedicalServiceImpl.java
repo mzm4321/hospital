@@ -9,6 +9,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.hospital.service.PatientService;
 import com.example.hospital.vo.MedicalVo;
 import com.example.hospital.vo.Result;
+import com.example.hospital.vo.params.GuahaoParam;
 import com.example.hospital.vo.params.MedicalParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -76,6 +77,16 @@ public class MedicalServiceImpl extends ServiceImpl<MedicalMapper, Medical> impl
         LambdaQueryWrapper<Medical> lambdaQueryWrapper=new LambdaQueryWrapper<>();
         lambdaQueryWrapper.eq(Medical::getPatientId,patientId);
         medicalMapper.delete(lambdaQueryWrapper);
+    }
+
+    @Override
+    public Result insertGuahao(GuahaoParam guahaoParam) {
+        Medical medical = new Medical();
+        medical.setPatientId(guahaoParam.getPatientId());
+        medical.setDoctorId(guahaoParam.getDoctorId());
+        medical.setDate(guahaoParam.getDate());
+        medicalMapper.insert(medical);
+        return Result.success(null);
     }
 
     public MedicalVo copy(Medical medical){

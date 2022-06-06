@@ -3,6 +3,7 @@ package com.example.hospital.controller;
 
 import com.example.hospital.service.MedicalService;
 import com.example.hospital.vo.Result;
+import com.example.hospital.vo.params.GuahaoParam;
 import com.example.hospital.vo.params.MedicalParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -38,6 +39,11 @@ public class MedicalController {
         return medicalService.updatePrescription(medicalParam);
     }
 
+    @PostMapping
+    public Result insertGuahao(@RequestBody GuahaoParam guahaoParam){
+        System.out.println(guahaoParam);
+        return medicalService.insertGuahao(guahaoParam);
+    }
     @DeleteMapping("/{medicalId}")
     public Result deleteGuahao(@PathVariable Long medicalId){
         return medicalService.deleteGuahaobyId(medicalId);

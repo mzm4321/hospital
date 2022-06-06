@@ -26,4 +26,6 @@ public interface DoctorService extends IService<Doctor> {
     Result findDoctor(Long dotocrId);
 
     Result updateDoctorbyId(Long doctorId, DoctorParam doctorParam);
+
+    Result findNoStopDoctorsbyDeparId(Long departId);
 }

@@ -3,6 +3,7 @@ package com.example.hospital.service;
 import com.example.hospital.entity.Medical;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.hospital.vo.Result;
+import com.example.hospital.vo.params.GuahaoParam;
 import com.example.hospital.vo.params.MedicalParam;
 
 /**
@@ -26,4 +27,5 @@ public interface MedicalService extends IService<Medical> {
 
     void deleteGuahaobyPatientId(Long patientId);
 
+    Result insertGuahao(GuahaoParam guahaoParam);
 }

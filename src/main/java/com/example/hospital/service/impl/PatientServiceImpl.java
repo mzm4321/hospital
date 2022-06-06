@@ -6,13 +6,13 @@ import com.example.hospital.mapper.PatientMapper;
 import com.example.hospital.service.MedicalService;
 import com.example.hospital.service.PatientService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.example.hospital.vo.ErrorCode;
 import com.example.hospital.vo.PatientVo;
 import com.example.hospital.vo.Result;
 import com.example.hospital.vo.params.PatientHistoryParam;
 import com.example.hospital.vo.params.PatientParam;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
@@ -71,6 +71,10 @@ public class PatientServiceImpl extends ServiceImpl<PatientMapper, Patient> impl
     public Result findPatientbyId(Long patientId) {
         LambdaQueryWrapper<Patient> lambdaQueryWrapper = new LambdaQueryWrapper<>();
         lambdaQueryWrapper.eq(Patient::getPatientId,patientId);
+        Patient patient = patientMapper.selectOne(lambdaQueryWrapper);
+        if(patient==null){
+            return Result.fail(ErrorCode.NO_PATIENT.getCode(), ErrorCode.NO_PATIENT.getMsg());
+        }
         return Result.success(copy(patientMapper.selectOne(lambdaQueryWrapper)));
     }
 
