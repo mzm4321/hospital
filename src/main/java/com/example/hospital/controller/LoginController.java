@@ -18,9 +18,4 @@ public class LoginController {
         return loginService.login(loginParam);
     }
 
-    @GetMapping()
-    public Result logout(@RequestHeader("Authorization")String token){
-//        return loginService.checkToken(token);
-        return null;
-    }
 }
